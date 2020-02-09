@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import 'rc-slider/assets/index.css';
 import 'rc-tooltip/assets/bootstrap.css';
-import Tooltip from 'rc-tooltip';
+// import Tooltip from 'rc-tooltip';
 import Slider from 'rc-slider';
 
 const num = {
@@ -61,14 +61,6 @@ const handle = (props) => {
     );
 };
 
-// const showTarget = (id, val) => {
-//     console.log('----', id, '--1--', val.target.value);
-// }
-
-// const showValue = (id, val) => {
-//     console.log('----', id, '--1--', val);
-// }
-
 function MeetingForm(props) {
     const [numAgenda, setNumAgenda] = useState(0);
     const [startOnTime, setStartOnTime] = useState(100);
@@ -119,7 +111,7 @@ function MeetingForm(props) {
     const handleSubmit = (setShowAlert, event) => {
         event.preventDefault();
         const form = event.currentTarget;
-        console.log('---', numAgenda, startOnTime, endOnTime, goodConclusion, peopleExpected, peopleShownUp, agendaConfirmed);
+        // console.log('---', numAgenda, startOnTime, endOnTime, goodConclusion, peopleExpected, peopleShownUp, agendaConfirmed);
 
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -129,13 +121,7 @@ function MeetingForm(props) {
             setShowAlert(false);
 
             const peopleDiff = (+peopleShownUp)/(+peopleExpected);
-            // const peopleDiff = Math.abs((+peopleExpected) - (+peopleShownUp));
-            
-            console.log('---', numAgenda, startOnTime, endOnTime, goodConclusion, peopleExpected, peopleShownUp, agendaConfirmed, peopleDiff);
-            
             props.calculateResult({numAgenda, startOnTime, endOnTime, goodConclusion, agendaConfirmed, peopleDiff});
-
-
         }
         setValidated(true);
     }

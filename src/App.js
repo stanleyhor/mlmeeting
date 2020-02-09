@@ -16,8 +16,8 @@ import FormTitle from './component/FormTitle';
 import logo from './logo.svg';
 import './App.css';
 
-let coeff = [9.71008086e-18 , 6.07153217e-18,  2.16840434e-18, -1.02999206e-18,
-  1.63904263e-16,  1.00000000e+00];
+let coeff = [1.10097287e-03 , 7.26512440e-04 , 9.13754221e-04 , -8.88528634e-05,
+  3.82755795e-02];
 
 
 
@@ -36,16 +36,19 @@ function App() {
 
   const handleSettingSaveClick = val => {
     // TODO: save settings
-    console.log('---saving:', val);
+    // console.log('---saving:', val);
     setCoeffs(val);
     handleSettingOnClick();
   }
 
   const calculateResult = ({numAgenda, startOnTime, endOnTime, goodConclusion, agendaConfirmed, peopleDiff}) => {
-    const confirmed = agendaConfirmed ? 1 : 0;
+    // const confirmed = agendaConfirmed ? 1 : 0;
     let theCoeffs = coeffs.split(',');
-    let finalScore = theCoeffs[0] * confirmed + theCoeffs[1] * numAgenda + theCoeffs[2] * startOnTime + theCoeffs[3] * endOnTime + theCoeffs[4] * goodConclusion + theCoeffs[5] * peopleDiff;
+    let finalScore = theCoeffs[0] * numAgenda + theCoeffs[1] * startOnTime + theCoeffs[2] * endOnTime + theCoeffs[3] * goodConclusion + theCoeffs[4] * peopleDiff;
     // finalScore = coeff[6]/finalScore;
+
+    console.log('---',numAgenda, startOnTime, endOnTime, goodConclusion, peopleDiff, '=', finalScore);
+    
     finalScore = finalScore.toFixed(6);
     setResult(finalScore);
   }

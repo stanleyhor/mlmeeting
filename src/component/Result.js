@@ -17,7 +17,6 @@ function Result(props) {
             { props.result && (
                 <h3 style={resultStyle}>{props.result}</h3>
             )}
-            
         </div>
     );
 }
