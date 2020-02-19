@@ -16,8 +16,7 @@ import FormTitle from './component/FormTitle';
 import logo from './logo.svg';
 import './App.css';
 
-let coeff = [1.10097287e-03 , 7.26512440e-04 , 9.13754221e-04 , -8.88528634e-05,
-  3.82755795e-02];
+let coeff = [1.10097287e-03, 7.26512440e-04, 9.13754221e-04, -8.88528634e-05, 3.82755795e-02, -0.13594509584532183];
 
 
 
@@ -44,7 +43,7 @@ function App() {
   const calculateResult = ({numAgenda, startOnTime, endOnTime, goodConclusion, agendaConfirmed, peopleDiff}) => {
     // const confirmed = agendaConfirmed ? 1 : 0;
     let theCoeffs = coeffs.split(',');
-    let finalScore = theCoeffs[0] * numAgenda + theCoeffs[1] * startOnTime + theCoeffs[2] * endOnTime + theCoeffs[3] * goodConclusion + theCoeffs[4] * peopleDiff;
+    let finalScore = theCoeffs[0] * numAgenda + theCoeffs[1] * startOnTime + theCoeffs[2] * endOnTime + theCoeffs[3] * goodConclusion + theCoeffs[4] * peopleDiff + (+theCoeffs[5]);
     // finalScore = coeff[6]/finalScore;
 
     console.log('---',numAgenda, startOnTime, endOnTime, goodConclusion, peopleDiff, '=', finalScore);
