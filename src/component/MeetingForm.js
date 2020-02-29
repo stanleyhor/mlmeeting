@@ -215,13 +215,14 @@ function MeetingForm(props) {
                     <div>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend style={{paddingRight: 20}}>
-                                Number of People Expected For the Meeting: 
+                                Number of People<br />Expected For the Meeting: 
                             </InputGroup.Prepend>
                             <Form.Control 
                                 required
                                 type="number"
                                 id="people-attended" 
                                 aria-describedby="basic-addon3" 
+                                style={{width: 200}}
                                 onChange={showId.bind(this, num.PEOPLE_EXPECTED.num)}
                             />
                         </InputGroup>
@@ -234,7 +235,7 @@ function MeetingForm(props) {
                     <div>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend style={{paddingRight: 20}}>
-                                Number of People Shown Up in the Meeting: 
+                                Number of People<br />Shown Up in the Meeting: 
                             </InputGroup.Prepend>
                             <Form.Control  
                                 required

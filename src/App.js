@@ -17,13 +17,13 @@ import logo from './logo.svg';
 import './App.css';
 
 let coeff = [1.10097287e-03, 7.26512440e-04, 9.13754221e-04, -8.88528634e-05, 3.82755795e-02, -0.13594509584532183];
-
+let coeffForResult1 = {a: 1666, b: -16.66};
 
 
 function App() {
   // const [open, setOpen] = useState(false);
   const [settingOpen, setSettingOpen] = useState(false);
-  const [result, setResult] = useState('');
+  const [result1, setResult1] = useState('');
 
   const temp = coeff.join(',');
 
@@ -48,8 +48,9 @@ function App() {
 
     console.log('---',numAgenda, startOnTime, endOnTime, goodConclusion, peopleDiff, '=', finalScore);
     
-    finalScore = finalScore.toFixed(6);
-    setResult(finalScore);
+    // normalize finalScore to a proper range for display
+    let finalScore1 = coeffForResult1.a * finalScore + coeffForResult1.b;
+    setResult1(~~finalScore1);
   }
 
   return (
@@ -62,13 +63,13 @@ function App() {
           </Col>
         </Row>
         <Row>
-          <Col md={{ span: 5, offset: 1}}>
+          <Col md={{ span: 6, offset: 1}}>
             <Fade in={true}>
               <MeetingForm calculateResult={calculateResult} />
             </Fade>
           </Col>
-          <Col md={{ span: 3, offset: 2}} style={{textAlign: 'center'}}>
-            <Result result={result} />
+          <Col md={{ span: 3, offset: 1}} style={{textAlign: 'center'}}>
+            <Result result1={result1} />
           </Col>
         </Row>
         <div style={{position: 'absolute', bottom: 30, right: 30}}>

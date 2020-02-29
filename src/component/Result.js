@@ -14,8 +14,8 @@ function Result(props) {
     return (
         <div>
             <h2 style={resultTitle}>Result</h2>
-            { props.result && (
-                <h3 style={resultStyle}>{props.result}</h3>
+            { props.result1 && (
+                <h3 style={resultStyle}>{props.result1}</h3>
             )}
         </div>
     );
