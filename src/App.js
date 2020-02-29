@@ -50,6 +50,13 @@ function App() {
     
     // normalize finalScore to a proper range for display
     let finalScore1 = coeffForResult1.a * finalScore + coeffForResult1.b;
+    if (finalScore1 > 100) {
+      finalScore1 = 100;
+    }
+    if (finalScore1 < 0) {
+      finalScore1 = 0;
+    }
+
     setResult1(~~finalScore1);
   }
 
