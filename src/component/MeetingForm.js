@@ -42,7 +42,7 @@ const num = {
 }
 
 const Handle = Slider.Handle;
-const wrapperStyle = { width: 400, margin: 50 };
+const wrapperStyle = { width: 400, margin: 50, display: 'inline-block', textAlign: 'left' };
 const minStyle = {display: 'inline-block', position: 'relative', left: 0, textAlign: 'left'};
 const maxStyle = {display: 'inline-block', position: 'absolute', right: 0, textAlign: 'right'};
 const alertStyle = {marginTop: 30};
@@ -127,7 +127,11 @@ function MeetingForm(props) {
     }
 
     return (
-        <Form noValidate validated={validated} onSubmit={handleSubmit.bind(this, setShowAlert)}>
+        <Form noValidate 
+            validated={validated} 
+            onSubmit={handleSubmit.bind(this, setShowAlert)}
+            style={{textAlign: 'center'}}
+        >
             <div style={wrapperStyle}>
                 <div style={{marginTop: 20}}>
                     <div>

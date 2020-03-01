@@ -58,7 +58,16 @@ function App() {
     }
 
     setResult1(~~finalScore1);
+    scrollToTop();
   }
+
+  const scrollToTop = () => {
+    const c = document.documentElement.scrollTop || document.body.scrollTop;
+    if (c > 0) {
+      window.requestAnimationFrame(scrollToTop);
+      window.scrollTo(0, c - c / 15);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -70,13 +79,13 @@ function App() {
           </Col>
         </Row>
         <Row>
-          <Col md={{ span: 6, offset: 1}}>
+          <Col>
+            { result1 && (
+              <Result result1={result1} />
+            )}
             <Fade in={true}>
               <MeetingForm calculateResult={calculateResult} />
             </Fade>
-          </Col>
-          <Col md={{ span: 3, offset: 1}} style={{textAlign: 'center'}}>
-            <Result result1={result1} />
           </Col>
         </Row>
         <div style={{position: 'absolute', bottom: 30, right: 30}}>
