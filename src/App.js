@@ -24,6 +24,7 @@ function App() {
   // const [open, setOpen] = useState(false);
   const [settingOpen, setSettingOpen] = useState(false);
   const [result1, setResult1] = useState('');
+  const [recommendations, setRecommendations] = useState([]);
 
   const temp = coeff.join(',');
 
@@ -58,8 +59,42 @@ function App() {
     }
 
     setResult1(~~finalScore1);
+
+    let recommend = getRecommendations({finalScore: finalScore1, startOnTime, endOnTime, goodConclusion, peopleDiff});
+    setRecommendations(recommend);
+
     scrollToTop();
   }
+
+  const getRecommendations = ({finalScore, startOnTime, endOnTime, goodConclusion, peopleDiff}) => {
+    let recommendations = [];
+    if (finalScore < 80) {
+      if (peopleDiff < 0.8) {
+        recommendations.push('Better attendance next time!');
+      }
+
+      const { recommendation } = getMin({startOnTime, endOnTime, goodConclusion});
+
+      recommendations.push(recommendation);
+    }
+
+    return recommendations;
+  };
+
+  const getMin = ({startOnTime, endOnTime, goodConclusion}) => {
+    let recommendation = 'Start the meeting on-time';
+    let min = {name: 'startOnTime', value: startOnTime};
+    if (endOnTime < min.value) {
+      recommendation = 'End the meeting on-time';
+      min = {name: 'endOnTime', value: endOnTime};
+    }
+    if (goodConclusion < min.value) {
+      recommendation = 'Conclude the agendas as much as possible';
+      min = {name: 'goodConclusion', value: goodConclusion};
+    }
+    min.recommendation = recommendation;
+    return min;
+  };
 
   const scrollToTop = () => {
     const c = document.documentElement.scrollTop || document.body.scrollTop;
@@ -81,7 +116,7 @@ function App() {
         <Row>
           <Col>
             { result1 && (
-              <Result result1={result1} />
+              <Result result1={result1} recommendations={recommendations} />
             )}
             <Fade in={true}>
               <MeetingForm calculateResult={calculateResult} />
